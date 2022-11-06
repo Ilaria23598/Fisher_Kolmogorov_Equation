@@ -94,7 +94,6 @@ def NonLinearSolver2(a, x, l, L, param, P = False):
 		solver.parameters['report'] = False
 		solver.parameters["maximum_iterations"] = 100000
 
-
 	return x
 		
 		
