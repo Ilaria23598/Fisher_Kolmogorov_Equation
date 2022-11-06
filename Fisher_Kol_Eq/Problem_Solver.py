@@ -242,7 +242,7 @@ def problemsolver(filename, iteration = 0, conv = False, errors = False):
                   # Variational Formulation Construction
                   a, L = VariationalFormulationlN(param, l, v, dt, n, l_n, K, t, mesh, ds_vent, ds_skull)
                   #Non linear system resolution
-                  x = Solver_handler.NonLinearSolver(a, x, l, L, param)
+                  x = Solver_handler.NonLinearSolver2(a, x, l, L, param)
                   if (np.mod(t,0.1)==0):
                   	XDMF_handler.FKSolutionSave(OutputFN, int(param['Spatial Discretization']['Polynomial Degree']),x, t, param['Temporal Discretization']['Time Step'],param['Model Parameters']['c or l'],mesh)
                   if (MPI.comm_world.Get_rank() == 0):
