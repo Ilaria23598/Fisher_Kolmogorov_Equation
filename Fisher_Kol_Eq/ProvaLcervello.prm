@@ -1,0 +1,153 @@
+# Listing of Parameters
+
+subsection Boundary Conditions
+  # Set the Column Name where is stored the BCs in the .csv file (associated to a column time)
+  set File Column Name Skull BCs  = u_skull
+
+  # Set the Column Name where is stored the BCs in the .csv file (associated to a column time)
+  set File Column Name Skull BCs (x-component) = ux_skull
+
+  # Set the Column Name where is stored the BCs in the .csv file (associated to a column time)
+  set File Column Name Ventricles BCs  = u_vent
+
+  # Type of Input for the imposition of Boundary Condition imposed on the Skull Surface: Constant/File/Expression
+  set Input for Skull BCs = Constant
+
+  # Type of Input for the imposition of Boundary Condition on the Ventricular Surface: Constant/File/Expression
+  set Input for Ventricles BCs = Constant
+
+  # Type of Boundary Condition imposed on the Skull Surface: Dirichlet/Neumann
+  set Skull BCs = Neumann
+
+  # Boundary Condition value to be imposed [m]
+  set Skull Dirichlet BCs Value = 0
+
+  # Type of Boundary Condition imposed on the Ventricular Surface: Dirichlet/Neumann
+  set Ventricles BCs = Neumann
+
+end
+
+subsection Domain Definition
+  # Set the name of the function containing the boundary ID
+  set Boundary ID Function Name = boundaries
+
+  # Set the value of boundary ID of skull
+  set ID for Skull = 1
+
+  # Set the value of boundary ID of ventricles
+  set ID for Ventricles = 2
+
+  # Set the name of the function containing the subdomain ID
+  set Subdomain ID Function Name = subdomains
+
+  # Decide the type of mesh to use in your simulation: File/Built-in
+  set Type of Mesh = File
+
+
+  subsection Built-in Mesh
+    # Decide the type of geometrical built-in object: Cube/Sphere/Square/Square1
+    set Geometry Type = Cube
+
+    # Refinement value of the mesh
+    set Mesh Refinement = 20
+
+
+    subsection Cubic Mesh
+      # Length of the external cube edge [m]
+      set External Edge Length = 0.1
+
+      # Length of the internal cube edge [m]
+      set Internal Edge Length = 0.01
+
+    end
+
+    subsection Spherical Mesh
+      # Length of the external sphere radius [m]
+      set External Radius = 0.1
+
+      # Length of the internal sphere radius [m]
+      set Internal Radius = 0.01
+
+    end
+  end
+
+  subsection Mesh from File
+    # Name of the file containing the mesh. Possible extensions: .h5
+    set File Name = /home/ilaria/Desktop/Fisher_Kolmogorov_Eq/Mesh/MeshPaziente4.h5
+
+  end
+end
+
+subsection Linear Solver
+  # Choice of iterative solver type. The available options are: 
+  #   gmres - cg - minres - tfqmr - richardson - bicgstab - nash - stcg
+  set Iterative Solver =mumps
+
+  # Choice of preconditioner type. The available options are: 
+  #   ilu - icc - jacobi - bjacobi - sor - additive_schwarz - petsc_amg - hypre_amg - 
+  #   hypre_euclid - hypre_parasails - amg - ml_amg - none
+  set Preconditioner = ...
+
+  # Choice of linear solver type: Default/Iterative Solver
+  set Type of Solver = Default
+
+  # Choice of using the user defined block preconditioner: Yes/No
+  set User-Defined Preconditioner = No
+
+end
+
+subsection Model Parameters
+  #  alpha
+  set alpha = 1
+  
+#Diffusion Constant of the Fluid Network [m^2/years]
+  set Diffusion = 0.00001
+  
+  set Forcing Terms = 0*x[0]
+  
+  set gamma = 50
+  # Initial condition 
+  set Initial Condition  = 0*x[0]
+
+  # Name of the file containing the initial condition# Initial condition 
+  set Initial Condition File Name = /home/ilaria/Desktop/Fisher_Kolmogorov_Eq/Mesh/InitialCondition2.h5
+  # Enable the reading of an initial condition from file# Initial condition 
+  set Initial Condition from File  = Yes
+
+  # Isotropic Diffusion Tensors assumption: Yes/No
+  set Isotropic Diffusion = Yes
+
+  set N or D = N
+  # Name of the function containing the initial condition in the file
+  set Name of IC Function in File = \lambda
+
+  set c or l = l
+end
+
+subsection Output
+  # Output file name (The relative/absolute path must be indicated!)
+  set Output XDMF File Name = /home/ilaria/Desktop/Fisher_Kolmogorov_Eq/Fisher_Kol_Sym/solution/PROVALambda
+
+end
+
+subsection Spatial Discretization
+  # Decide the type of spatial discretization method to apply (DG-FEM/CG-FEM)# Decide the polynomial degree of the FEM approximation
+  set Method = DG-FEM
+
+  set Polynomial Degree = 1
+end
+
+subsection Temporal Discretization
+  # Final time of the simulation [years]
+  set Final Time = 10
+
+  # Periodicity of the BCs [years]
+  set Problem Periodicity = 0
+
+  # Choice of the value of the parameter theta: IE(1) - CN(0.5) - EE(0)
+  set Theta-Method Parameter = 1
+
+  # Time step of the problem [years]
+  set Time Step = 0.0001
+
+end
