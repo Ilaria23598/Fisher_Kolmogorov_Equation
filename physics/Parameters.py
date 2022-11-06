@@ -13,7 +13,7 @@ import ParameterFile_handler as pfh
 
 
 #################################################################################
-# 	   Generator of parameter file for the Fisher Kolmogorov problem 		#
+# 	  Generator of parameter file for the Fisher Kolmogorov problem 		#
 #################################################################################
 
 def CreateFisherKolmprm(filename, conv = False):
