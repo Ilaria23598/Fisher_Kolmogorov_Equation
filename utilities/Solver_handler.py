@@ -88,7 +88,7 @@ def NonLinearSolver2(a, x, l, L, param, P = False):
 		#PETScOptions.set('ksp_rtol', '1e-6')
 		#PETScOptions.set('ksp_max_it', '1000')
 		#solver.parameters['methods'] = 'gmres'
-		solver.parameters['snes_solver']['line_search'] = 'basic'
+		#solver.parameters['snes_solver']['line_search'] = 'basic'
 		solver.parameters["relative_tolerance"] = 1e-4
 		solver.parameters["absolute_tolerance"] = 1e-4
 		solver.parameters['report'] = False
